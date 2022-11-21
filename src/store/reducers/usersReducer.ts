@@ -4,13 +4,13 @@ import {GridSelectionModel} from '@mui/x-data-grid';
 import {UpdateUsersValueType, usersApi} from '../../api/usersApi';
 import {logoutThunk} from './authReducer';
 
-type initialStateType = {
+export type UsersInitialStateType = {
     data: UserType[]
 }
-const initialState: initialStateType = {
+export const usersInitialState: UsersInitialStateType = {
     data: []
 };
-export const updateUsersThunk = createAsyncThunk('block-users', async (arg: UpdateUsersValueType, thunkAPI) => {
+export const updateUsersThunk = createAsyncThunk('update-users', async (arg: UpdateUsersValueType, thunkAPI) => {
     try {
         await usersApi.updateUsers(arg);
         thunkAPI.dispatch(getAllUserThunk());
@@ -44,7 +44,7 @@ export const getAllUserThunk = createAsyncThunk('get-all-user', async (arg, thun
 });
 const usersReducer = createSlice({
     name: 'users',
-    initialState,
+    initialState: usersInitialState,
     reducers: {
         getAllUser(state, action) {
             state.data = action.payload;

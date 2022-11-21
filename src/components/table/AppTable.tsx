@@ -27,7 +27,7 @@ export const AppTable: React.FC = () => {
         if (isAuth) {
             dispatch(getAllUserThunk());
         }
-    }, []);
+    }, [dispatch, isAuth]);
     const unlockUsers = () => selectionModel.length !== 0 && dispatch(updateUsersThunk({
         users: selectionModel,
         isBlocked: false

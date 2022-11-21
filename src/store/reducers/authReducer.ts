@@ -1,12 +1,12 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {authApi, LoginValueType, RegistrationValueType, AuthUserType} from '../../api/authApi';
 
-export interface AuthReducerState {
+export type AuthReducerStateType = {
     isAuth: boolean
     user: AuthUserType
 }
 
-const initialState: AuthReducerState = {
+export const AuthReducerInitialState: AuthReducerStateType = {
     isAuth: false,
     user: {} as AuthUserType
 }
@@ -29,7 +29,7 @@ export const loginThunk = createAsyncThunk('login', async (arg: LoginValueType, 
     }
 });
 
-export const logoutThunk = createAsyncThunk('logout', async (arg:{id:number}, thunkAPI) => {
+export const logoutThunk = createAsyncThunk('logout', async (arg: { id: number }, thunkAPI) => {
     try {
         await authApi.logout(arg.id);
         thunkAPI.dispatch(logoutAction());
@@ -40,7 +40,7 @@ export const logoutThunk = createAsyncThunk('logout', async (arg:{id:number}, th
 
 export const authReducer = createSlice({
     name: 'auth',
-    initialState,
+    initialState: AuthReducerInitialState,
     reducers: {
         loginAction: (state, action) => {
             state.user = action.payload

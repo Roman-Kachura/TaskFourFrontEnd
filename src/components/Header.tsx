@@ -9,9 +9,10 @@ import {getUserThunk} from '../store/reducers/usersReducer';
 export const Header: React.FC = () => {
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth);
     const user = useSelector<RootState, AuthUserType>(state => state.auth.user);
-    const state = useSelector<RootState>(state => state);
     const dispatch = useAppDispatch();
-    useEffect(()=>{if(isAuth) dispatch(getUserThunk({id:user.id}))},[state]);
+    useEffect(() => {
+        if (isAuth) dispatch(getUserThunk({id: user.id}))
+    }, [dispatch, isAuth, user.id]);
     const logout = () => dispatch(logoutThunk({id: user.id}));
     return (
         <AppBar position="fixed" color={'primary'}>

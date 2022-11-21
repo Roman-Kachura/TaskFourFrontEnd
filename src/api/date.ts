@@ -1,7 +1,7 @@
 import axios, {AxiosRequestConfig} from 'axios';
 
 export const $api = axios.create({
-    baseURL: 'https://task-four-back-end.herokuapp.com/',
+    baseURL: process.env.NODE_ENV !== 'development' ? 'https://task-four-back-end.herokuapp.com/' : `http://localhost:3020/`,
     withCredentials: true
 });
 

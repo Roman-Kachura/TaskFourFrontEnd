@@ -1,8 +1,8 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import authReducer from './reducers/authReducer';
+import authReducer, {AuthReducerInitialState} from './reducers/authReducer';
 import {useDispatch} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import usersReducer from './reducers/usersReducer';
+import usersReducer, {usersInitialState} from './reducers/usersReducer';
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -15,7 +15,11 @@ const loadedState = () => {
     if (state) {
         return JSON.parse(state.toString())
     } else {
-        return null;
+        const state = {
+            auth:AuthReducerInitialState,
+            users:usersInitialState
+        }
+        return state;
     }
 }
 
@@ -33,3 +37,4 @@ store.subscribe(() => {
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type RootReducerType = typeof rootReducer;
