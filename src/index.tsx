@@ -17,5 +17,5 @@ root.render(
         </BrowserRouter>
     </Provider>
 );
-console.log(process.env)
+
 reportWebVitals();
