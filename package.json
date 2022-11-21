@@ -51,9 +51,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3",
-    "node": "^19.1.0",
-    "npm": "^9.1.2"
+    "gh-pages": "^3.2.3"
   },
   "browserslist": {
     "production": [
