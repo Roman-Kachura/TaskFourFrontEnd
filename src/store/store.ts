@@ -2,7 +2,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import authReducer from './reducers/authReducer';
 import {useDispatch} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import usersReducer, {getAllUserThunk} from './reducers/usersReducer';
+import usersReducer from './reducers/usersReducer';
 
 const rootReducer = combineReducers({
     auth: authReducer,
