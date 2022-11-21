@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/TaskFourFrontEnd/static/css/main.f110d6ec.css",
-    "main.js": "/TaskFourFrontEnd/static/js/main.931915d4.js",
+    "main.js": "/TaskFourFrontEnd/static/js/main.81ed296f.js",
     "static/js/787.aea08c81.chunk.js": "/TaskFourFrontEnd/static/js/787.aea08c81.chunk.js",
     "index.html": "/TaskFourFrontEnd/index.html",
     "main.f110d6ec.css.map": "/TaskFourFrontEnd/static/css/main.f110d6ec.css.map",
-    "main.931915d4.js.map": "/TaskFourFrontEnd/static/js/main.931915d4.js.map",
+    "main.81ed296f.js.map": "/TaskFourFrontEnd/static/js/main.81ed296f.js.map",
     "787.aea08c81.chunk.js.map": "/TaskFourFrontEnd/static/js/787.aea08c81.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f110d6ec.css",
-    "static/js/main.931915d4.js"
+    "static/js/main.81ed296f.js"
   ]
 }
