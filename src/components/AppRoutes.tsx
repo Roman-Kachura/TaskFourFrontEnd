@@ -1,8 +1,8 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {Registration} from './auth/Registration';
-import {Login} from './auth/Login';
-import {AppTable} from './table/AppTable';
+import {Registration} from './Registration';
+import {Login} from './Login';
+import {AppTable} from './AppTable';
 
 export const AppRoutes: React.FC = () => {
     return (

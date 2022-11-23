@@ -1,14 +1,15 @@
 import axios, {AxiosRequestConfig} from 'axios';
-
+//http://localhost:3020
+//https://task-four-back-end.herokuapp.com/
 export const $api = axios.create({
-    baseURL: process.env.NODE_ENV !== 'development' ? 'https://task-four-back-end.herokuapp.com/' : `http://localhost:3020/`,
+    baseURL: `https://task-four-back-end.herokuapp.com/`,
     withCredentials: true
 });
 
 $api.interceptors.request.use((config: AxiosRequestConfig) => {
     const app = localStorage.getItem('app');
     if (app) {
-        const token = JSON.parse(app.toString()).auth.user.accessToken;
+        const token = JSON.parse(app.toString()).auth.user.token;
         config.headers = {
             Authorization: `Bearer ${token}`
         }

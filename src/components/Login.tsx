@@ -2,11 +2,11 @@ import React from 'react';
 // @ts-ignore
 import s from './Auth.module.css';
 import {Button, Paper, TextField, Typography} from '@material-ui/core';
-import {RootState, useAppDispatch} from '../../store/store';
+import {RootState, useAppDispatch} from '../store/store';
 import {Navigate, NavLink} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {Formik} from 'formik';
-import {loginThunk} from '../../store/reducers/authReducer';
+import {loginThunk} from '../store/reducers/authReducer';
 
 export const Login: React.FC = () => {
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth);

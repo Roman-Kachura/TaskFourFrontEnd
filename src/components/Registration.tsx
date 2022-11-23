@@ -2,8 +2,8 @@ import React from 'react';
 // @ts-ignore
 import s from './Auth.module.css';
 import {Button, Paper, TextField, Typography} from '@material-ui/core';
-import {RootState, useAppDispatch} from '../../store/store';
-import {registrationThunk} from '../../store/reducers/authReducer';
+import {RootState, useAppDispatch} from '../store/store';
+import {registrationThunk} from '../store/reducers/authReducer';
 import {Formik} from 'formik';
 import {Navigate, NavLink} from 'react-router-dom';
 import {useSelector} from 'react-redux';

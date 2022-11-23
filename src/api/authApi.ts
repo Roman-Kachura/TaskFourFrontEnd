@@ -13,18 +13,15 @@ export const authApi = {
     }
 }
 
-export type RegistrationValueType = {
+export type RegistrationValueType = LoginValueType & {
     name: string
-    email: string
-    password: string
 }
 export type LoginValueType = {
     email: string
     password: string
 }
 export type AuthUserType = UserType & {
-    accessToken: string
-    refreshToken: string
+    token: string
 }
 export type UserType = {
     name: string
@@ -36,4 +33,9 @@ export type UserType = {
 }
 export type ResponseType = {
     status: string
+}
+
+export type ResponseErrorType = {
+    status:number
+    message:string
 }

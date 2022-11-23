@@ -10,10 +10,10 @@ export const usersApi = {
     getAllUser() {
         return $api.get<AxiosResponse, AxiosResponse<UserType[]>>(`/users`);
     },
-    updateUsers(data:UpdateUsersValueType) {
+    updateUsers(data: UpdateUsersValueType) {
         return $api.put<AxiosResponse, AxiosResponse<ResponseType>>(`/users`, data);
     },
-    deleteUsers(data:GridSelectionModel) {
+    deleteUsers(data: GridSelectionModel) {
         return $api.post<AxiosResponse, AxiosResponse<ResponseType>>(`/users`, data);
     }
 }

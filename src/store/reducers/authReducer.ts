@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {authApi, LoginValueType, RegistrationValueType, AuthUserType} from '../../api/authApi';
+import {authApi, AuthUserType, LoginValueType, RegistrationValueType} from '../../api/authApi';
+import {setUsers} from './usersReducer';
 
 export type AuthReducerStateType = {
     isAuth: boolean
@@ -16,6 +17,7 @@ export const registrationThunk = createAsyncThunk('registration', async (arg: Re
         const user = await authApi.registration(arg);
         thunkAPI.dispatch(loginAction(user.data));
     } catch (e) {
+        alert(e);
         throw e;
     }
 });
@@ -25,6 +27,7 @@ export const loginThunk = createAsyncThunk('login', async (arg: LoginValueType, 
         const user = await authApi.login(arg);
         thunkAPI.dispatch(loginAction(user.data));
     } catch (e) {
+        alert(e);
         throw e;
     }
 });
@@ -32,8 +35,10 @@ export const loginThunk = createAsyncThunk('login', async (arg: LoginValueType, 
 export const logoutThunk = createAsyncThunk('logout', async (arg: { id: number }, thunkAPI) => {
     try {
         await authApi.logout(arg.id);
+        thunkAPI.dispatch(setUsers([]));
         thunkAPI.dispatch(logoutAction());
     } catch (e) {
+        alert(e);
         throw e;
     }
 });

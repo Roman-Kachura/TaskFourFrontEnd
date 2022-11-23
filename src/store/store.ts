@@ -37,4 +37,3 @@ store.subscribe(() => {
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type RootReducerType = typeof rootReducer;

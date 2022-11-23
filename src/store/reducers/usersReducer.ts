@@ -37,7 +37,7 @@ export const getUserThunk = createAsyncThunk('get-user', async (arg: { id: numbe
 export const getAllUserThunk = createAsyncThunk('get-all-user', async (arg, thunkAPI) => {
     try {
         const users = await usersApi.getAllUser();
-        thunkAPI.dispatch(getAllUser(users.data));
+        thunkAPI.dispatch(setUsers(users.data));
     } catch (e) {
         throw e;
     }
@@ -46,11 +46,11 @@ const usersReducer = createSlice({
     name: 'users',
     initialState: usersInitialState,
     reducers: {
-        getAllUser(state, action) {
+        setUsers(state, action) {
             state.data = action.payload;
         },
     }
 });
 
-export const {getAllUser} = usersReducer.actions;
+export const {setUsers} = usersReducer.actions;
 export default usersReducer.reducer;

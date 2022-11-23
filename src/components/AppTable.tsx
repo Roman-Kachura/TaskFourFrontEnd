@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {RootState, useAppDispatch} from '../../store/store';
+import {RootState, useAppDispatch} from '../store/store';
 import {Navigate} from 'react-router-dom';
 import {DataGrid, GridColDef, GridSelectionModel} from '@mui/x-data-grid';
 import {IconButton} from '@mui/material';
 import {Delete, Lock, LockOpen} from '@material-ui/icons';
-import {updateUsersThunk, deleteUsersThunk, getAllUserThunk} from '../../store/reducers/usersReducer';
-import {UserType} from '../../api/authApi';
+import {deleteUsersThunk, getAllUserThunk, updateUsersThunk} from '../store/reducers/usersReducer';
+import {UserType} from '../api/authApi';
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -21,32 +21,39 @@ const columns: GridColDef[] = [
 export const AppTable: React.FC = () => {
     const [selectionModel, setSelectionModel] = React.useState<GridSelectionModel>([]);
     const users = useSelector<RootState, UserType[]>(state => state.users.data);
+    const token = useSelector<RootState, string>(state => state.auth.user.token);
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth);
     const dispatch = useAppDispatch();
     useEffect(() => {
-        if (isAuth) {
+        if (isAuth && token) {
             dispatch(getAllUserThunk());
         }
-    }, [dispatch, isAuth]);
-    const unlockUsers = () => selectionModel.length !== 0 && dispatch(updateUsersThunk({
-        users: selectionModel,
-        isBlocked: false
-    }));
-    const blockUsers = () => selectionModel.length !== 0 && dispatch(updateUsersThunk({
-        users: selectionModel,
-        isBlocked: true
-    }));
-    const deleteUsers = () => selectionModel.length !== 0 && dispatch(deleteUsersThunk(selectionModel));
+    }, [dispatch, isAuth, token]);
+    const updateUsers = (isBlocked: boolean) => {
+        if (selectionModel.length !== 0) {
+            dispatch(updateUsersThunk({
+                users: selectionModel,
+                isBlocked
+            }));
+            setSelectionModel([]);
+        }
+    }
+    const deleteUsers = () => {
+        if (selectionModel.length !== 0) {
+            dispatch(deleteUsersThunk(selectionModel));
+            setSelectionModel([]);
+        }
+    }
 
     if (!isAuth) return <Navigate to={'/login'}/>
 
     return (
         <div style={{height: 500, width: '100%'}}>
             <div style={{marginBottom: '30px'}}>
-                <IconButton color="primary" onClick={unlockUsers}>
+                <IconButton color="primary" onClick={()=>updateUsers(false)}>
                     <LockOpen/>
                 </IconButton>
-                <IconButton color="secondary" onClick={blockUsers}>
+                <IconButton color="secondary" onClick={()=>updateUsers(true)}>
                     <Lock/>
                 </IconButton>
                 <IconButton color="error" onClick={deleteUsers}>
