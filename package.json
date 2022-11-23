@@ -1,8 +1,8 @@
 {
-  "name": "TaskFourFrondEnd",
+  "name": "table_of_users_front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://roman-kachura.github.io/TaskFourFrontEnd/",
+  "homepage": "https://roman-kachura.github.io/table_of_users_front/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
