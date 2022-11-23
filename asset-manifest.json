@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TaskFourFrontEnd/static/css/main.f110d6ec.css",
-    "main.js": "/TaskFourFrontEnd/static/js/main.1e58906b.js",
-    "static/js/787.aea08c81.chunk.js": "/TaskFourFrontEnd/static/js/787.aea08c81.chunk.js",
-    "index.html": "/TaskFourFrontEnd/index.html",
-    "main.f110d6ec.css.map": "/TaskFourFrontEnd/static/css/main.f110d6ec.css.map",
-    "main.1e58906b.js.map": "/TaskFourFrontEnd/static/js/main.1e58906b.js.map",
-    "787.aea08c81.chunk.js.map": "/TaskFourFrontEnd/static/js/787.aea08c81.chunk.js.map"
+    "main.css": "/table_of_users_front/static/css/main.1a84afe5.css",
+    "main.js": "/table_of_users_front/static/js/main.bc4ccff2.js",
+    "static/js/787.59d6fdc2.chunk.js": "/table_of_users_front/static/js/787.59d6fdc2.chunk.js",
+    "index.html": "/table_of_users_front/index.html",
+    "main.1a84afe5.css.map": "/table_of_users_front/static/css/main.1a84afe5.css.map",
+    "main.bc4ccff2.js.map": "/table_of_users_front/static/js/main.bc4ccff2.js.map",
+    "787.59d6fdc2.chunk.js.map": "/table_of_users_front/static/js/787.59d6fdc2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f110d6ec.css",
-    "static/js/main.1e58906b.js"
+    "static/css/main.1a84afe5.css",
+    "static/js/main.bc4ccff2.js"
   ]
 }
