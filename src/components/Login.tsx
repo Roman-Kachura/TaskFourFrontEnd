@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
                         }}>
                             <div className={s.item}>
                                 <TextField
-                                    autoComplete={values.email}
+                                    autoComplete={''}
                                     required
                                     error={!!errors.email && touched.email}
                                     className={s.textField}
@@ -67,7 +67,7 @@ export const Login: React.FC = () => {
 
                             <div className={s.item}>
                                 <TextField
-                                    autoComplete={values.password}
+                                    autoComplete={''}
                                     required
                                     error={!!errors.password && touched.password}
                                     className={s.textField}
