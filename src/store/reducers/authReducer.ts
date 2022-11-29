@@ -13,33 +13,33 @@ export const AuthReducerInitialState: AuthReducerStateType = {
 }
 
 export const registrationThunk = createAsyncThunk('registration', async (arg: RegistrationValueType, thunkAPI) => {
-    try {
-        const user = await authApi.registration(arg);
+    const user = await authApi.registration(arg);
+    if (!!user.data.message) {
+        alert(user.data.message);
+        throw user.data.message;
+    } else {
         thunkAPI.dispatch(loginAction(user.data));
-    } catch (e) {
-        alert(e);
-        throw e;
     }
 });
 
 export const loginThunk = createAsyncThunk('login', async (arg: LoginValueType, thunkAPI) => {
-    try {
-        const user = await authApi.login(arg);
+    const user = await authApi.login(arg);
+    if (!!user.data.message) {
+        alert(user.data.message);
+        throw user.data.message;
+    } else {
         thunkAPI.dispatch(loginAction(user.data));
-    } catch (e) {
-        alert(e);
-        throw e;
     }
 });
 
 export const logoutThunk = createAsyncThunk('logout', async (arg: { id: number }, thunkAPI) => {
-    try {
-        await authApi.logout(arg.id);
+    const res = await authApi.logout(arg.id);
+    if (!!res.data.message) {
+        alert(res.data.message);
+        throw res.data.message;
+    } else {
         thunkAPI.dispatch(setUsers([]));
         thunkAPI.dispatch(logoutAction());
-    } catch (e) {
-        alert(e);
-        throw e;
     }
 });
 

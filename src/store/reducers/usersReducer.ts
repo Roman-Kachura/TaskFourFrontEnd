@@ -11,35 +11,38 @@ export const usersInitialState: UsersInitialStateType = {
     data: []
 };
 export const updateUsersThunk = createAsyncThunk('update-users', async (arg: UpdateUsersValueType, thunkAPI) => {
-    try {
-        await usersApi.updateUsers(arg);
+    const res = await usersApi.updateUsers(arg);
+    if (!!res.data.message) {
+        alert(res.data.message);
+        throw res.data.message;
+    } else {
         thunkAPI.dispatch(getAllUserThunk());
-    } catch (e) {
-        throw e;
     }
 });
 export const deleteUsersThunk = createAsyncThunk('delete-users', async (arg: GridSelectionModel, thunkAPI) => {
-    try {
-        await usersApi.deleteUsers(arg);
+    const res = await usersApi.deleteUsers(arg);
+    if (!!res.data.message) {
+        alert(res.data.message);
+        throw res.data.message;
+    } else {
         thunkAPI.dispatch(getAllUserThunk());
-    } catch (e) {
-        throw e;
     }
 });
 export const getUserThunk = createAsyncThunk('get-user', async (arg: { id: number }, thunkAPI) => {
-    try {
-        const user = await usersApi.getUser(arg.id);
-        if (user.data.isBlocked) thunkAPI.dispatch(logoutThunk(arg));
-    } catch (e) {
-        throw e;
+    const user = await usersApi.getUser(arg.id);
+    if (!!user.data.message) {
+        alert(user.data.message);
+        throw user.data.message;
     }
+    if (user.data.isBlocked) thunkAPI.dispatch(logoutThunk(arg));
 });
 export const getAllUserThunk = createAsyncThunk('get-all-user', async (arg, thunkAPI) => {
-    try {
-        const users = await usersApi.getAllUser();
+    const users = await usersApi.getAllUser();
+    if (!!users.data.message) {
+        alert(users.data.message);
+        throw users.data.message;
+    } else {
         thunkAPI.dispatch(setUsers(users.data));
-    } catch (e) {
-        throw e;
     }
 });
 const usersReducer = createSlice({

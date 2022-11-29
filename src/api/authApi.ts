@@ -20,7 +20,7 @@ export type LoginValueType = {
     email: string
     password: string
 }
-export type AuthUserType = UserType & {
+export type AuthUserType = UserType & ResponseErrorType &{
     token: string
 }
 export type UserType = {
@@ -31,11 +31,12 @@ export type UserType = {
     registered: string
     lastDate: string
 }
-export type ResponseType = {
+export type ResponseType = ResponseErrorType & {
     status: string
 }
 
 export type ResponseErrorType = {
-    status:number
-    message:string
+    message?:any
+    status?:number
+    errors?:any
 }

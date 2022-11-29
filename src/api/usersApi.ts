@@ -1,14 +1,14 @@
 import {$api} from './date';
 import {AxiosResponse} from 'axios';
-import {ResponseType, UserType} from './authApi';
+import {ResponseErrorType, ResponseType, UserType} from './authApi';
 import {GridSelectionModel} from '@mui/x-data-grid';
 
 export const usersApi = {
     getUser(id: number) {
-        return $api.get<AxiosResponse, AxiosResponse<UserType>>(`/users/${id}`);
+        return $api.get<AxiosResponse, AxiosResponse<ResponseErrorType & UserType>>(`/users/${id}`);
     },
     getAllUser() {
-        return $api.get<AxiosResponse, AxiosResponse<UserType[]>>(`/users`);
+        return $api.get<AxiosResponse, AxiosResponse<ResponseErrorType & UserType[]>>(`/users`);
     },
     updateUsers(data: UpdateUsersValueType) {
         return $api.put<AxiosResponse, AxiosResponse<ResponseType>>(`/users`, data);
