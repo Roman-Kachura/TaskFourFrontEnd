@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {UserType} from '../../api/authApi';
 import {GridSelectionModel} from '@mui/x-data-grid';
 import {UpdateUsersValueType, usersApi} from '../../api/usersApi';
-import {logoutThunk} from './authReducer';
+import {logoutAction, logoutThunk} from './authReducer';
 
 export type UsersInitialStateType = {
     data: UserType[]
@@ -19,12 +19,15 @@ export const updateUsersThunk = createAsyncThunk('update-users', async (arg: Upd
         thunkAPI.dispatch(getAllUserThunk());
     }
 });
-export const deleteUsersThunk = createAsyncThunk('delete-users', async (arg: GridSelectionModel, thunkAPI) => {
-    const res = await usersApi.deleteUsers(arg);
+export const deleteUsersThunk = createAsyncThunk('delete-users', async (arg: {users:GridSelectionModel,id:number}, thunkAPI) => {
+    const res = await usersApi.deleteUsers(arg.users);
     if (!!res.data.message) {
         alert(res.data.message);
         throw res.data.message;
-    } else {
+    }
+    if(!!arg.users.find(n => n === arg.id)){
+        thunkAPI.dispatch(logoutAction());
+    } else{
         thunkAPI.dispatch(getAllUserThunk());
     }
 });

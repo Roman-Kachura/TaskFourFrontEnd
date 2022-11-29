@@ -41,9 +41,7 @@ export const AppTable: React.FC = () => {
     }
     const deleteUsers = () => {
         if (selectionModel.length !== 0) {
-            const u = selectionModel.find(n => n === id);
-            dispatch(deleteUsersThunk(selectionModel));
-            if(!!u) dispatch(logoutThunk({id}));
+            dispatch(deleteUsersThunk({users: selectionModel, id}));
             setSelectionModel([]);
         }
     }
