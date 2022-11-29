@@ -2,7 +2,7 @@ import axios, {AxiosRequestConfig} from 'axios';
 //http://localhost:3020
 //https://task-four-back-end.herokuapp.com
 export const $api = axios.create({
-    baseURL: `http://localhost:3020`,
+    baseURL: `https://task-four-back-end.herokuapp.com`,
     withCredentials: true
 });
 
