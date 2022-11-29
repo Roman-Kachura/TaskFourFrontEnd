@@ -7,7 +7,8 @@ import {DataGrid, GridColDef, GridSelectionModel} from '@mui/x-data-grid';
 import {IconButton} from '@mui/material';
 import {Delete, Lock, LockOpen} from '@material-ui/icons';
 import {deleteUsersThunk, getAllUserThunk, updateUsersThunk} from '../store/reducers/usersReducer';
-import {UserType} from '../api/authApi';
+import {AuthUserType, UserType} from '../api/authApi';
+import {logoutThunk} from '../store/reducers/authReducer';
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 90},
@@ -21,7 +22,7 @@ const columns: GridColDef[] = [
 export const AppTable: React.FC = () => {
     const [selectionModel, setSelectionModel] = React.useState<GridSelectionModel>([]);
     const users = useSelector<RootState, UserType[]>(state => state.users.data);
-    const token = useSelector<RootState, string>(state => state.auth.user.token);
+    const {token, id} = useSelector<RootState, AuthUserType>(state => state.auth.user);
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth);
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -40,7 +41,9 @@ export const AppTable: React.FC = () => {
     }
     const deleteUsers = () => {
         if (selectionModel.length !== 0) {
+            const u = selectionModel.find(n => n === id);
             dispatch(deleteUsersThunk(selectionModel));
+            if(!!u) dispatch(logoutThunk({id}));
             setSelectionModel([]);
         }
     }
@@ -50,10 +53,10 @@ export const AppTable: React.FC = () => {
     return (
         <div style={{height: 500, width: '100%'}}>
             <div style={{marginBottom: '30px'}}>
-                <IconButton color="primary" onClick={()=>updateUsers(false)}>
+                <IconButton color="primary" onClick={() => updateUsers(false)}>
                     <LockOpen/>
                 </IconButton>
-                <IconButton color="secondary" onClick={()=>updateUsers(true)}>
+                <IconButton color="secondary" onClick={() => updateUsers(true)}>
                     <Lock/>
                 </IconButton>
                 <IconButton color="error" onClick={deleteUsers}>
